@@ -1,8 +1,8 @@
+import { Suspense } from "react";
 import { FaSpotify } from "react-icons/fa";
 import { ArtistsList, SearchForm } from "@/components";
 
 export default function Home() {
-
   return (
     <div>
       <main>
@@ -12,7 +12,9 @@ export default function Home() {
         </div>
 
         <SearchForm />
-        <ArtistsList />
+        <Suspense fallback={<div>Loading artists...</div>}>
+          <ArtistsList />
+        </Suspense>
       </main>
 
       <footer></footer>
