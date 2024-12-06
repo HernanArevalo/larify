@@ -11,23 +11,29 @@ export const SearchForm = () => {
     const debouncedSearch = debounce(() => {
       router.push(`/?artist=${input}`)
     }, 500);
-  
+    
     useEffect(() => {
       if (input.length >= 3) {
         debouncedSearch();
       }
       return () => debouncedSearch.cancel();
     }, [input]);
-  
-
+    
+    
     const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInput(e.target.value);
     };
+    
+    const onSubmit = (e:React.FormEvent) => {
+      e.preventDefault()
+      router.push(`/?artist=${input}`)
+
+    }
 
   return (
     <>
       <h3>Search your artist</h3>
-      <form className="search-form">
+      <form className="search-form" onSubmit={onSubmit}>
         <input
           type="text"
           value={input}
