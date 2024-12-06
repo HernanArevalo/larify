@@ -30,16 +30,16 @@ export async function GET(req: Request) {
 
     const data = await response.json();
 
-    if (data.artists) {
+    if (data) {
       const newArtists = data.artists?.items.map((artist: Item) => ({
         name: artist.name,
         picture:
-          artist.images[1].url ||
+          artist.images[1]?.url ||
           'https://i.scdn.co/image/ab6761610000f1788683dd0698fb59ad7039a46f',
       }));
   
       return NextResponse.json(newArtists);
-    }else return []
+    }else return NextResponse.json([])
     
   } catch (error) {
     console.error('Error fetching artists:', error);
