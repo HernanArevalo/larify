@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getSpotifyToken } from "@/service/getSpotifyToken";
 import { Item } from "@/interfaces";
 
 export async function GET(req: Request) {
@@ -9,30 +10,36 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Query parameter is required" }, { status: 400 });
   }
 
-  const apiUrl = `https://spotify23.p.rapidapi.com/search/?q=${query}&type=artists&offset=0&limit=5&numberOfTopResults=5`;
-
-  const options = {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY || '',
-      'x-rapidapi-host': process.env.NEXT_PUBLIC_RAPIDAPI_HOST || '',
-    },
-  };
+  const apiUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=artist&limit=5`;
 
   try {
-    const response = await fetch(apiUrl, options);
+    const token = await getSpotifyToken();
+
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.error('Error fetching from Spotify API:', await response.json());
+      return NextResponse.json({ message: "Error fetching data" }, { status: 500 });
+    }
+
     const data = await response.json();
 
     const newArtists = data.artists.items.map((artist: Item) => ({
-      name: artist.data.profile.name,
+      name: artist.name,
       picture:
-        artist.data.visuals.avatarImage?.sources[1].url ||
-        'https://res.cloudinary.com/dabmixcta/image/upload/v1733344111/kihhrdj6lyp6ubekaekd.png',
+        artist.images[1].url ||
+        'https://i.scdn.co/image/ab6761610000f1788683dd0698fb59ad7039a46f',
     }));
 
     return NextResponse.json(newArtists);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching artists:', error);
     return NextResponse.json({ message: "Error fetching data" }, { status: 500 });
   }
 }
