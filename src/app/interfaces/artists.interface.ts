@@ -1,43 +1,41 @@
-export interface ArtistsDB {
-    query:   string;
-    artists: ArtistsClass;
+export interface SpotifyArtists {
+    artists: Artists;
 }
 
-export interface ArtistsClass {
-    totalCount: number;
-    items:      Item[];
-    pagingInfo: PagingInfo;
+export interface Artists {
+    href:     string;
+    limit:    number;
+    next:     string;
+    offset:   number;
+    previous: null;
+    total:    number;
+    items:    Item[];
 }
 
 export interface Item {
-    data: Data;
+    external_urls: ExternalUrls;
+    followers:     Followers;
+    genres:        string[];
+    href:          string;
+    id:            string;
+    images:        Image[];
+    name:          string;
+    popularity:    number;
+    type:          string;
+    uri:           string;
 }
 
-export interface Data {
-    uri:     string;
-    profile: Profile;
-    visuals: Visuals;
+export interface ExternalUrls {
+    spotify: string;
 }
 
-export interface Profile {
-    name: string;
+export interface Followers {
+    href:  null;
+    total: number;
 }
 
-export interface Visuals {
-    avatarImage: AvatarImage | null;
-}
-
-export interface AvatarImage {
-    sources: Source[];
-}
-
-export interface Source {
+export interface Image {
     url:    string;
-    width:  number;
     height: number;
-}
-
-export interface PagingInfo {
-    nextOffset: number;
-    limit:      number;
+    width:  number;
 }
