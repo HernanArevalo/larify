@@ -1,0 +1,29 @@
+.skeleton {
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton-img {
+  width: 160px;
+  height: 160px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.skeleton-line {
+  width: 80%;
+  height: 20px;
+  background-color: #1b1b1b;
+  margin: 10px auto;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
