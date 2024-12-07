@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
 }
 .loader {
   width: 50px;

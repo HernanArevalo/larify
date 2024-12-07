@@ -4,7 +4,7 @@ import { Artist } from '@/interfaces';
 import Image from 'next/image';
 import './styles.css';
 import { Backdrop, Box, Fade, Modal } from '@mui/material';
-import { Divider } from '@/components';
+import { Divider, Loader } from '@/components';
 
 import { Toast } from '@/utils';
 import { saveArtist } from '@/service';
@@ -27,7 +27,7 @@ const style = {
 export const ArtistItem = ({ artist }: Props) => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
-
+  const [isSaving, setIsSaving] = useState(false)
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -35,7 +35,7 @@ export const ArtistItem = ({ artist }: Props) => {
 
   const onRegister = async(e:React.FormEvent) => {
     e.preventDefault();
-
+    setIsSaving(true)
     const resp = await saveArtist({artist,name})
 
     Toast({
@@ -43,6 +43,10 @@ export const ArtistItem = ({ artist }: Props) => {
       icon: resp.ok? 'success':'error'
     });
     handleClose()
+    setName('')
+    setTimeout(() => {
+      setIsSaving(false)
+    }, 1000);
   }
 
   return (
@@ -94,7 +98,12 @@ export const ArtistItem = ({ artist }: Props) => {
                        onChange={e=>{setName(e.target.value)}}
                        required
                 />
-                <button type='submit'>Registrar</button>
+                { !isSaving?
+                    <button type='submit'>Registrar</button>
+                    :
+                    <Loader />
+
+                }
               </form>
             </div>
           </Box>
