@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSpotifyToken } from "@/service/getSpotifyToken";
+import { getSpotifyToken } from "@/service";
 import { Item } from "@/interfaces";
 
 export async function GET(req: Request) {
@@ -33,8 +33,10 @@ export async function GET(req: Request) {
     const newArtists = data.artists.items.map((artist: Item) => ({
       name: artist.name,
       picture:
-        artist.images[1].url ||
+        artist.images[0]?.url ||
         'https://i.scdn.co/image/ab6761610000f1788683dd0698fb59ad7039a46f',
+      id: artist.id,
+      genres: artist.genres
     }));
 
     return NextResponse.json(newArtists);

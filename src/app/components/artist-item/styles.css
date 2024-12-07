@@ -1,0 +1,111 @@
+.artist {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  max-width: 180px;
+  background-color: rgba(112, 64, 145, 0.7);
+  transition: all 0.3s ease;
+}
+
+.artist-img {
+  height: 160px;
+  overflow: hidden;
+  display: flex;
+  justify-content: end;
+  border-radius: 10px;
+}
+
+.artist > h5 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-wrap: wrap;
+}
+
+.artist-expanded {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 5px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(112, 64, 145);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.artist-img-expanded {
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: end;
+  border-radius: 10px;
+  color: white;
+}
+
+.artist-expanded h5 {
+  margin-top: 5px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  width: fit-content;
+}
+
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.register-form > label{
+  text-align: start;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  width: 100%;
+}
+.register-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form > input{
+  border-radius: 10px;
+  padding: 5px 10px;
+  width: 100%;
+  color: black;
+}
+
+.register-form > button{
+  background-color: #341847;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  font-weight: 700;
+}
+.register-form > button:hover{
+  background-color: #201229;
+}
+
+*:focus {
+  outline: none;
+}

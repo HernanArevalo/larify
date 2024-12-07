@@ -4,7 +4,6 @@ import { ArtistsList, SearchForm } from "@/components";
 
 export default function Home() {
   return (
-    <div>
       <main>
         <div className="logo">
           <h1>Larify</h1>
@@ -18,8 +17,5 @@ export default function Home() {
           <ArtistsList />
         </Suspense>
       </main>
-
-      <footer></footer>
-    </div>
   );
 }

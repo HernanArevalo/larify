@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import 'animate.css';
 import "./globals.css";
 
 export const metadata: Metadata = {

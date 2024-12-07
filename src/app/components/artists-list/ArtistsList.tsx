@@ -1,29 +1,36 @@
 'use client'
 import { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import { ArtistSkeleton } from '@/components'
-import { Artist } from '@/interfaces'
+import { ArtistItem, ArtistSkeleton } from '@/components'
 import { getArtists } from '@/service'
 import { larifyStore } from '@/store'
+import { Artist } from '@/interfaces'
 
 export const ArtistsList = () => {
   const params = useSearchParams();
+  const query = params.get('artist')
 
   const { artist, artists, setArtists, setArtist, loading, isLoading, notLoading } = larifyStore()
 
-  const query = params.get('artist')
 
   const updateArtists = async () => {
     loading()
-    const newArtists = await getArtists(query)
-    setArtists(newArtists)
-    setArtist(query || '')
+
+    if (query && query.trim() !== '' ) {
+      const newArtists = await getArtists(query)
+      setArtists(newArtists)
+      setArtist(query)
+    }else{
+      setArtists([])
+      setArtist('')
+    }
     notLoading()
   }
 
   useEffect(() => {
     updateArtists();
+
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
@@ -33,7 +40,7 @@ export const ArtistsList = () => {
   }, [])
 
   return (
-    <div className="data flex flex-col justify-center items-center">
+    <div className="data flex flex-col justify-center items-center w-full">
       <h3 className="text-4xl my-10 capitalize font-bold">
         {artist}
       </h3>
@@ -48,22 +55,16 @@ export const ArtistsList = () => {
       ) : artists.length > 0 ? (
         <div className="artists">
           {artists.map((artist: Artist, index) => (
-            <div className="artist" key={index}>
-              <div className="artist-img">
-                <Image
-                  src={artist.picture}
-                  alt={artist.name}
-                  width={160}
-                  height={160}
-                />
-              </div>
-              <h5>{artist.name}</h5>
-            </div>
+            <ArtistItem artist={artist} key={index}/>
           ))}
         </div>
-      ) : (
-        <p>No se encontraron artistas</p>
-      )}
+      ) : 
+         query?.trim() !== '' ?
+        (<p className='text-2xl mt-10'>Realiza una búsqueda!</p>)
+        :
+        (<p className='text-2xl mt-10'>No se encontraron artistas</p>)
+        
+      }
     </div>
   )
 }
