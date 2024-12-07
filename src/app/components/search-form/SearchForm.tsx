@@ -25,12 +25,12 @@ export const SearchForm = () => {
   }, [input]);
 
   useEffect(() => {
-    if (!!!query) {
-      setInput('')
+    if (query && query.trim() !== '') {
+      setInput(query)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
