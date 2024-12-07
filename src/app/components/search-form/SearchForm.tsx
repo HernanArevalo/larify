@@ -53,7 +53,7 @@ export const SearchForm = () => {
           onChange={onChangeInput}
           placeholder="Who you want to be?"
         />
-        <button type="submit" disabled={input.length < 3}>
+        <button type="submit">
           <CiSearch size={20} />
         </button>
       </form>

@@ -19,19 +19,19 @@ export const saveArtist = async({artist, name}: Props) => {
     if (isRegistered) {
       return{
         ok: false,
-        message: 'Artista ya registrado :('
+        message: 'Artist already taken :('
       }
     }
     await addDoc(collection(FirebaseDB, "users"), {name, artist});
     return {
       ok:true,
-      message:"Artista registrado correctamente!"
+      message:"Successful artist registration!"
     }
   } catch (error) {
     console.error("Error al agregar documento: ", error);
     return {
       ok:false,
-      message:'Error registrando artista'
+      message:'Error! Try again later.'
     }
   }
 }
