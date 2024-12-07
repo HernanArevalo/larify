@@ -91,15 +91,15 @@ export const ArtistItem = ({ artist }: Props) => {
               <h5>{artist.name}</h5>
               <Divider />
               <form onSubmit={onRegister} className="register-form">
-                <label>Registrar cantante:</label>
+                <label>Register your artist:</label>
                 <input type="text" 
-                       placeholder='Tu nombre' 
+                       placeholder='Your name' 
                        value={name} 
                        onChange={e=>{setName(e.target.value)}}
                        required
                 />
                 { !isSaving?
-                    <button type='submit'>Registrar</button>
+                    <button type='submit'>Register</button>
                     :
                     <Loader />
 
