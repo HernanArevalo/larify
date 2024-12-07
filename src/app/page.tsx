@@ -10,10 +10,10 @@ export default function Home() {
           <FaSpotify size={76} color="rgb(255, 94, 74)" />
         </div>
 
-        <SearchForm />
         <Suspense fallback={
           <div className="text-center mt-10 text-2xl">Loading artists...</div>
         }>
+          <SearchForm />
           <ArtistsList />
         </Suspense>
       </main>
