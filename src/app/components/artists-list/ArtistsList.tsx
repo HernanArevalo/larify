@@ -60,7 +60,7 @@ export const ArtistsList = () => {
         </div>
       ) : 
          query?.trim() !== '' ?
-        (<p className='text-2xl mt-10'>Make a search!</p>)
+        (<p className='text-2xl mt-10'>Hacé una búsqueda!</p>)
         :
         (<p className='text-2xl mt-10'>No se encontraron artistas</p>)
         
