@@ -11,7 +11,7 @@ export default function Home() {
         </div>
 
         <Suspense fallback={
-          <div className="text-center mt-10 text-2xl">Loading artists...</div>
+          <div className="text-center mt-10 text-2xl">Cargando artistas...</div>
         }>
           <SearchForm />
           <ArtistsList />

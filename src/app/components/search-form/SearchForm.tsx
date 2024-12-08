@@ -45,13 +45,13 @@ export const SearchForm = () => {
 
   return (
     <>
-      <h3>Search your artist</h3>
+      <h3>Buscá tu artista</h3>
       <form className="search-form" onSubmit={onSubmit}>
         <input
           type="text"
           value={input}
           onChange={onChangeInput}
-          placeholder="Who you want to be?"
+          placeholder="Quién querés ser?"
         />
         <button type="submit">
           <CiSearch size={20} />
