@@ -42,7 +42,7 @@ export const ArtistsList = () => {
       <h3 className="text-4xl my-10 capitalize font-bold">
         {artist}
       </h3>
-      {isLoading ? (
+      {isLoading && query !== null ? (
         <div className="artists">
           {Array(5)
             .fill(0)
