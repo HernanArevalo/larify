@@ -1,26 +1,13 @@
-"use client";
-
-import { larifyStore } from '@/store';
-import './styles.css'
-import { CustomsList, AuthForm } from './components';
+import { AdminContainer } from './components';
 import { Guest } from '@/interfaces';
+import { getGuests } from '@/service';
 
-interface props{
-  guests: Guest[]
-}
+import './styles.css';
 
-export default function AdminPage({guests}:props) {
-  const { isAdmin } = larifyStore()
+export default async function AdminPage() {
+  const guests: Guest[] = await getGuests();
 
   return (
-    <div className="admin-container">
-      {
-        isAdmin ?
-          ( <CustomsList guests={guests}/> )
-          :
-          ( <AuthForm />
-          )
-      }
-    </div>
+    <AdminContainer guests={guests}/>
   );
 }
