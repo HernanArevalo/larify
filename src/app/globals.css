@@ -21,8 +21,10 @@ body {
   align-items: center;
   justify-content: start;
   font-weight: 600;
-  padding-top: 100px;
+}
 
+main{
+  padding-top: 100px;
 }
 
 .logo{
