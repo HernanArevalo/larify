@@ -33,7 +33,7 @@
   gap: 5px;
   padding: 20px;
   border-radius: 10px;
-  background-color: rgba(112, 64, 145);
+  background-color: rgb(112, 64, 145);
   transition: all 0.3s ease;
   font-weight: 500;
 }

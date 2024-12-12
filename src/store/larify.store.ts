@@ -1,7 +1,8 @@
 import { create } from 'zustand'
-import { Artist } from '../interfaces'
+import { Artist } from '@/interfaces'
 
 type Store = {
+  isAdmin: boolean,
   isLoading: boolean,
   artist: string,
   artists: Artist[],
@@ -9,9 +10,11 @@ type Store = {
   setArtist: (artists:string) => void,
   loading: () => void,
   notLoading: () => void,
+  setAdmin: (val:boolean) => void,
 }
 
 export const larifyStore = create<Store>()((set) => ({
+  isAdmin: false,
   isLoading: true,
   artist: '',
   artists: [],
@@ -30,5 +33,7 @@ export const larifyStore = create<Store>()((set) => ({
   notLoading: () => {
     set({ isLoading: false })
   },
-
+  setAdmin: (val) =>{
+    set({isAdmin:val})
+  }
 }))
