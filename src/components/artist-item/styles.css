@@ -9,6 +9,10 @@
   background-color: rgba(112, 64, 145, 0.7);
   transition: all 0.3s ease;
 }
+.artist:hover {
+  transform: scale(1.1);
+}
+
 
 .artist-img {
   height: 160px;
