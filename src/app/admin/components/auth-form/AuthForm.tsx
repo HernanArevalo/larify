@@ -8,7 +8,7 @@ export const AuthForm = () => {
   const { setAdmin } = larifyStore()
 
   const checkPassword = () => {
-    if (password == '7') {
+    if (password.trim().toLowerCase() == 'larucha') {
       setAdmin(true)
     }
   }
