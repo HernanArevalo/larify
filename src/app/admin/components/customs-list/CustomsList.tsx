@@ -1,5 +1,6 @@
 import { Guest } from '@/interfaces'
 import './styles.css'
+import Image from 'next/image';
 
 interface props {
   guests: Guest[]
@@ -13,11 +14,19 @@ export const CustomsList = ({ guests }: props) => {
 
   return (
     <div className="customs-list-div">
-      <h2 className='page-title'>Disfraces Registrados</h2>
+      <h2 className='page-title'>Invitados confirmados</h2>
       <div className='customs-list'>
         {filteredGuests.map(guest => (
-          <div key={guest.artist.id} className='guest'>
-            <h4 className='capitalize text-center'>{guest.artist.name}</h4>
+          <div className="artist" key={guest.artist.id}>
+            <div className="artist-img">
+              <Image
+                src={guest.artist.picture}
+                alt={guest.artist.name}
+                width={160}
+                height={160}
+              />
+            </div>
+            <h5>{guest.artist.name}</h5>
           </div>
         ))
         }
