@@ -26,8 +26,8 @@ export const CustomsList = ({ guests }: props) => {
                 height={160}
               />
             </div>
-            <h5>{guest.artist.name}</h5>
-            <h6>{guest.name}</h6>
+            <h5 className="text-xl" >{guest.artist.name}</h5>
+            <h6 className="capitalize text-md font-light">{guest.name}</h6>
           </div>
         ))
         }
