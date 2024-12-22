@@ -27,6 +27,7 @@ export const CustomsList = ({ guests }: props) => {
               />
             </div>
             <h5>{guest.artist.name}</h5>
+            <h6>{guest.name}</h6>
           </div>
         ))
         }
